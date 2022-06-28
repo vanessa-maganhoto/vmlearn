@@ -2,9 +2,7 @@ package com.vanessamatos.vmlearn.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_user")
@@ -24,6 +22,9 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id") // O inverseJoinClumns "pega" o nome que está na coleção
     )
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Notification> notifications = new ArrayList<>();
 
     public User(){}
 
