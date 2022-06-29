@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthService {
@@ -16,7 +16,7 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-    @Transactional//(readOnly = true)
+    @Transactional (readOnly = true)
     public User authenticated() {
         try {
             String username = SecurityContextHolder.getContext().getAuthentication().getName();

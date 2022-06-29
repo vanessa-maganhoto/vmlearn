@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
@@ -26,7 +26,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     private AuthService authService;
 
-    @Transactional //(readOnly = true)
+    @Transactional (readOnly = true)
     public UserDTO findById(Long id) {
         authService.validateSelfOrAdmin(id);
         Optional<User> obj = repository.findById(id);
